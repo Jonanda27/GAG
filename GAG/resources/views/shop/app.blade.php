@@ -74,7 +74,7 @@
         <h4 class="text-center py-3">Grow Garden Shop</h4>
         @if($testis->count() > 0)
             <div style="width: 225px; height: 225px; overflow: hidden; margin: 0 auto;">
-                <img id="testiImage" src="{{ asset('storage/' . $testis[0]->gambar) }}" alt="Testimoni"
+                <img id="testiImage" src="{{ $testis[0]->gambar_url }}" alt="Testimoni"
                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
             </div>
         @else
@@ -94,8 +94,11 @@
             @foreach($pets as $pet)
                 <div class="col-md-3 mb-3 d-flex">
                     <div class="card h-100 w-100">
-                        <img src="{{ asset('storage/' . $pet->gambar) }}" class="card-img-top" alt="{{ $pet->nama }}"
-                            style="height: 200px; object-fit: cover;">
+                        @if($pet->gambar_url)
+                            <img src="{{ $pet->gambar_url }}" class="card-img-top" alt="{{ $pet->nama }}">
+                        @else
+                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="No image">
+                        @endif
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ $pet->nama }}</h5>
                             <p class="card-text">Harga: {{ number_format($pet->harga, 0, ',', '.') }} Rupiah</p>

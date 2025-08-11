@@ -46,7 +46,6 @@
 <body>
 
     <!-- Sidebar -->
-    <!-- Sidebar -->
 <div id="sidebar">
     <h4 class="text-center py-3">Admin Panel</h4>
     <ul>
@@ -68,35 +67,45 @@
 
         <!-- List item dari database -->
         <div class="row">
-            @foreach($pets as $pet)
-                <div class="col-md-3 mb-3">
-                    <div class="card">
-                        <img src="{{ asset('storage/' . $pet->gambar) }}" class="card-img-top" alt="{{ $pet->nama }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $pet->nama }}</h5>
-                            <p class="card-text">Harga: {{ $pet->harga }}p</p>
-                            <p class="card-text">Stok: {{ $pet->stok }}</p>
-                            
-                            <!-- Tombol aksi -->
-                            <div class="d-flex gap-2">
-                                <a href="{{ route('admin.pet.edit', $pet->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                
-                                <form action="{{ route('admin.pet.destroy', $pet->id) }}" method="POST" onsubmit="return confirm('Yakin mau hapus?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
-                                
-                                <form action="{{ route('admin.pet.sold', $pet->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-secondary btn-sm">Sold</button>
-                                </form>
-                            </div>
+       @foreach($pets as $pet)
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    @if($pet->gambar_url)
+                        <img src="{{ $pet->gambar_url }}" 
+                            class="card-img-top" 
+                            alt="{{ $pet->nama }}" 
+                            style="height: 200px; object-fit: contain; background-color: #f8f9fa;">
+                    @else
+                        <img src="https://via.placeholder.com/150" 
+                            class="card-img-top" 
+                            alt="No image" 
+                            style="height: 200px; object-fit: contain; background-color: #f8f9fa;">
+                    @endif
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $pet->nama }}</h5>
+                        <p class="card-text">Harga: {{ $pet->harga }}p</p>
+                        <p class="card-text">Stok: {{ $pet->stok }}</p>
+
+                        <!-- Tombol aksi -->
+                        <div class="d-flex gap-2">
+                            <a href="{{ route('admin.pet.edit', $pet->id) }}" class="btn btn-warning btn-sm">Edit</a>
+
+                            <form action="{{ route('admin.pet.destroy', $pet->id) }}" method="POST" onsubmit="return confirm('Yakin mau hapus?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+
+                            <form action="{{ route('admin.pet.sold', $pet->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-secondary btn-sm">Sold</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
+    </div>
     </div>
 
 <script>

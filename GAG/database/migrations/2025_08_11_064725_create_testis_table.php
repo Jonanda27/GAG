@@ -15,9 +15,10 @@ class CreateTestisTable extends Migration
     {
         Schema::create('testis', function (Blueprint $table) {
             $table->id();
-            $table->string('gambar'); // Menyimpan path gambar
+            $table->binary('gambar'); // Menyimpan path gambar
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE testis MODIFY gambar LONGBLOB');
     }
 
     /**

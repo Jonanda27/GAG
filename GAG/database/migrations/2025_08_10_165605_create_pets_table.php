@@ -17,9 +17,10 @@ class CreatePetsTable extends Migration
         $table->string('nama');
         $table->decimal('harga', 10, 2);
         $table->integer('stok');
-        $table->string('gambar');
+        $table->binary('gambar');
         $table->timestamps();
     });
+    DB::statement('ALTER TABLE pets MODIFY gambar LONGBLOB');
 }
 
 
