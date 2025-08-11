@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pet;
+use App\Models\Testi;
 
 class ShopController extends Controller
 {
     public function index()
     {
         $pets = Pet::all();
-        return view('shop.app', compact('pets'));
+        $testis = Testi::all();
+        return view('shop.app', compact('pets','testis'));
     }
 }

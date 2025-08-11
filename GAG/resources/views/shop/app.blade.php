@@ -72,11 +72,14 @@
     <!-- Sidebar kiri -->
     <div id="sidebar">
         <h4 class="text-center py-3">Grow Garden Shop</h4>
-        <ul>
-            <li>Kategori: Buah</li>
-            <li>Kategori: Hewan</li>
-            <li>Kategori: Dekorasi</li>
-        </ul>
+        @if($testis->count() > 0)
+            <div style="width: 225px; height: 225px; overflow: hidden; margin: 0 auto;">
+                <img id="testiImage" src="{{ asset('storage/' . $testis[0]->gambar) }}" alt="Testimoni"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            </div>
+        @else
+            <p class="text-light p-2">Belum ada testimoni</p>
+        @endif
     </div>
 
     <!-- Konten utama -->
@@ -86,7 +89,6 @@
         <h1>Dashboard</h1>
         <p>Selamat datang di toko item Grow a Garden!</p>
 
-        <!-- List item dari database -->
         <!-- List item dari database -->
         <div class="row">
             @foreach($pets as $pet)
@@ -219,7 +221,20 @@
                 renderCart();
             });
 
+            document.addEventListener("DOMContentLoaded", function () {
+                @if($testis->count() > 0)
+                                const testiImages = {!! json_encode($testis->map(function ($t) {
+                        return asset('storage/' . $t->gambar);
+                    })) !!};
+                                let testiIndex = 0;
+                                const testiImgTag = document.getElementById('testiImage');
 
+                                setInterval(() => {
+                                    testiIndex = (testiIndex + 1) % testiImages.length;
+                                    testiImgTag.src = testiImages[testiIndex];
+                                }, 2000);
+                @endif
+});
 
         </script>
 

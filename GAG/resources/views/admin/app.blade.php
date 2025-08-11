@@ -46,17 +46,19 @@
 <body>
 
     <!-- Sidebar -->
-    <div id="sidebar">
-        <h4 class="text-center py-3">Admin Panel</h4>
-        <ul>
-            <li>Kategori: Buah</li>
-            <li>Kategori: Hewan</li>
-            <li>Kategori: Dekorasi</li>
-            <li>
-                <a href="{{ route('admin.pet.create') }}" class="btn btn-success w-100 mt-3">+ Tambah Pet</a>
-            </li>
-        </ul>
-    </div>
+    <!-- Sidebar -->
+<div id="sidebar">
+    <h4 class="text-center py-3">Admin Panel</h4>
+    <ul>
+        <li>
+            <a href="{{ route('admin.pet.create') }}" class="btn btn-success w-100 mt-3">+ Tambah Pet</a>
+        </li>
+        <li>
+            <a href="{{ route('admin.testi.create') }}" class="btn btn-info w-100 mt-3">+ Tambah Testi</a>
+        </li>
+    </ul>
+</div>
+
 
     <!-- Content -->
     <div id="content">

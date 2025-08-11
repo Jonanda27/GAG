@@ -29,7 +29,7 @@ class PetController extends Controller
         $pet = Pet::findOrFail($id);
         $pet->delete();
 
-        return redirect()->route('admin.dashboard')->with('success', 'Pet berhasil dihapus.');
+        return redirect()->route('admin.app')->with('success', 'Pet berhasil dihapus.');
     }
 
     public function sold($id)

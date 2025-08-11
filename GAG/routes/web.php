@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
+use App\Http\Controllers\TestiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('pet/{pet}', [PetController::class, 'update'])->name('pet.update');
     Route::delete('pet/{pet}', [PetController::class, 'destroy'])->name('pet.destroy');
     Route::post('pet/{pet}/sold', [PetController::class, 'sold'])->name('pet.sold');
+    Route::get('/testi/create', [TestiController::class, 'create'])->name('testi.create');
+    Route::post('/testi/store', [TestiController::class, 'store'])->name('testi.store');
 });
 
 
