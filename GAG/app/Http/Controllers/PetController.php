@@ -18,11 +18,12 @@ class PetController extends Controller
     return view('admin.app', compact('pets')); // kirim ke view
 }
 
-  public function edit($id)
-    {
-        $pet = Pet::findOrFail($id);
-        return view('admin.pet.edit', compact('pet'));
-    }
+public function edit($id)
+{
+    $pet = Pet::findOrFail($id);
+    return view('admin.pet.edit', compact('pet'));
+}
+
 
     public function destroy($id)
     {
